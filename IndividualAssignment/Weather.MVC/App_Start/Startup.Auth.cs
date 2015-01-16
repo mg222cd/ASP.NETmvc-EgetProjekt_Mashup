@@ -58,11 +58,11 @@ namespace Weather.MVC
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "962779571993-c471afdng4vei0ojld7uo52tj46vt2o4.apps.googleusercontent.com",
+                ClientSecret = "s2KtHUgn0XLZlqXYKoDqUG_z"
+            });
         }
     }
 }
