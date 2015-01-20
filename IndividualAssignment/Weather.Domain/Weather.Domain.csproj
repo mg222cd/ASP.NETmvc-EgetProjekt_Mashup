@@ -80,6 +80,8 @@
     <Compile Include="Repositories\IWeatherRepository.cs" />
     <Compile Include="Repositories\WeatherRepository.cs" />
     <Compile Include="Repositories\WeatherRepositoryBase.cs" />
+    <Compile Include="ViewModels\WeatherForecastViewModel.cs" />
+    <Compile Include="ViewModels\WeatherIndexViewModel.cs" />
     <Compile Include="WeatherService.cs" />
     <Compile Include="WeatherServiceBase.cs" />
     <Compile Include="Webservices\GeonamesWebservice.cs" />
@@ -87,9 +89,7 @@
     <Compile Include="Webservices\IYrWebservice.cs" />
     <Compile Include="Webservices\YrWebservice.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="DataModels\WeatherModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
