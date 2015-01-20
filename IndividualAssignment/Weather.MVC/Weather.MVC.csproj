@@ -229,6 +229,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Weather\Index.cshtml" />
     <Content Include="Views\Weather\Forecast.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Geoname.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
