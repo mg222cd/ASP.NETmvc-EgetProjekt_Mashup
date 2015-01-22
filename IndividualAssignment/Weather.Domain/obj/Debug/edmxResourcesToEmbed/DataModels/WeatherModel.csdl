@@ -28,6 +28,7 @@
     <Property Name="lng" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nextUpdate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Forecasts" Relationship="Self.FK_Forecast_Geography" FromRole="Geoname" ToRole="Forecast" />
+    <Property Name="adminName2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Forecast_Geography">
     <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />

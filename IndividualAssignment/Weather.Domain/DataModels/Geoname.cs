@@ -27,6 +27,7 @@ namespace Weather.Domain
         public string lat { get; set; }
         public string lng { get; set; }
         public Nullable<System.DateTime> nextUpdate { get; set; }
+        public string adminName2 { get; set; }
     
         public virtual ICollection<Forecast> Forecasts { get; set; }
     }

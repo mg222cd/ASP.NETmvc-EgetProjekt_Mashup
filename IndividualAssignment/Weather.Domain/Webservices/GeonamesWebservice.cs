@@ -16,7 +16,7 @@ namespace Weather.Domain.Webservices
         {
             string rawJson;
 
-            string requestUriString = String.Format("http://api.geonames.org/searchJSON?name={0}&maxRows=100&username=marikegrinde", geoName);
+            string requestUriString = String.Format("http://api.geonames.org/searchJSON?name={0}&style=full&maxRows=10&username=marikegrinde", geoName);
             var request = (HttpWebRequest)WebRequest.Create(requestUriString);
 
             using (var response = request.GetResponse())
@@ -37,7 +37,8 @@ namespace Weather.Domain.Webservices
                 string countryName = (string)result["countryName"];
                 string latitude = (string)result["lat"];
                 string langitude = (string)result["lng"];
-                cities.Add(new Geoname(id, cityName, region, countryName, latitude, langitude));
+                string municipality = (string)result["adminName2"];
+                cities.Add(new Geoname(id, cityName, region, countryName, latitude, langitude, municipality));
             }
 
             return cities;

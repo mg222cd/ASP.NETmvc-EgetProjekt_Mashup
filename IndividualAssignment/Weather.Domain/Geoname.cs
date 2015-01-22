@@ -8,7 +8,7 @@ namespace Weather.Domain
 {
     public partial class Geoname
     {
-        public Geoname(string id, string cityName, string region, string country, string latitude, string langitude)
+        public Geoname(string id, string cityName, string region, string country, string latitude, string langitude, string municipality)
             : this()
         {
             geonameId = id;
@@ -17,6 +17,7 @@ namespace Weather.Domain
             countryName = country;
             lat = latitude;
             lng = langitude;
+            adminName2 = municipality;
         }
     }
 }

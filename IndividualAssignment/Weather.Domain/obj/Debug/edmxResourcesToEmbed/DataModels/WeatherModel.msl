@@ -19,6 +19,7 @@
     <EntitySetMapping Name="Geonames">
       <EntityTypeMapping TypeName="WP13_mg222cd_WeatherModel.Geoname">
         <MappingFragment StoreEntitySet="Geoname">
+          <ScalarProperty Name="adminName2" ColumnName="adminName2" />
           <ScalarProperty Name="geoId" ColumnName="geoId" />
           <ScalarProperty Name="geonameId" ColumnName="geonameId" />
           <ScalarProperty Name="name" ColumnName="name" />

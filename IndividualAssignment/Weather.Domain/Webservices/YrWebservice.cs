@@ -12,7 +12,18 @@ namespace Weather.Domain.Webservices
     {
         public IEnumerable<Forecast> GetForecast(Geoname geoname)
         {
-            string requestUriString = String.Format("http://www.yr.no/sted/{0}/{1}/{2}/forecast.xml", geoname.countryName, geoname.adminName1, geoname.name);
+            //Olika URL:strängar mot YR:s API beroende på om landet är Norge eller resten av världen.
+            string requestUriString;
+            if (geoname.countryName == "Norway")
+            {
+                requestUriString = String.Format("http://www.yr.no/sted/Norge/{0}/{1}/{2}/forecast.xml", geoname.adminName1, geoname.adminName2, geoname.name);
+            }
+            else
+            {
+                requestUriString = String.Format("http://www.yr.no/sted/{0}/{1}/{2}/forecast.xml", geoname.countryName, geoname.adminName1, geoname.name);
+            }
+
+            //läsning
             XDocument xDoc = XDocument.Load(requestUriString);
             var _lastUpdate = xDoc.Element("weatherdata").Element("meta").Element("lastupdate").Value;
             var _nextUpdate = xDoc.Element("weatherdata").Element("meta").Element("nextupdate").Value;

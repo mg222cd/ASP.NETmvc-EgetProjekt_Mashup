@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WP13_mg222cd_WeatherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WP13_mg222cd_WeatherModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Forecast">
           <Key>
             <PropertyRef Name="forecastId" />
@@ -31,6 +31,7 @@
           <Property Name="lat" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="lng" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nextUpdate" Type="smalldatetime" />
+          <Property Name="adminName2" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK_Forecast_Geography">
           <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />
@@ -52,8 +53,7 @@
             <End Role="Forecast" EntitySet="Forecast" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WP13_mg222cd_WeatherModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -85,6 +85,7 @@
           <Property Name="lng" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nextUpdate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Forecasts" Relationship="Self.FK_Forecast_Geography" FromRole="Geoname" ToRole="Forecast" />
+          <Property Name="adminName2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Forecast_Geography">
           <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />
@@ -130,6 +131,7 @@
           <EntitySetMapping Name="Geonames">
             <EntityTypeMapping TypeName="WP13_mg222cd_WeatherModel.Geoname">
               <MappingFragment StoreEntitySet="Geoname">
+                <ScalarProperty Name="adminName2" ColumnName="adminName2" />
                 <ScalarProperty Name="geoId" ColumnName="geoId" />
                 <ScalarProperty Name="geonameId" ColumnName="geonameId" />
                 <ScalarProperty Name="name" ColumnName="name" />
