@@ -26,7 +26,8 @@
     <Property Name="lat" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="lng" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="nextUpdate" Type="smalldatetime" />
-    <Property Name="adminName2" Type="varchar" MaxLength="255" />
+    <Property Name="adminName2" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="lastUpdate" Type="smalldatetime" />
   </EntityType>
   <Association Name="FK_Forecast_Geography">
     <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />

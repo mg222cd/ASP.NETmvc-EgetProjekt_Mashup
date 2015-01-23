@@ -31,7 +31,8 @@
           <Property Name="lat" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="lng" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nextUpdate" Type="smalldatetime" />
-          <Property Name="adminName2" Type="varchar" MaxLength="255" />
+          <Property Name="adminName2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lastUpdate" Type="smalldatetime" />
         </EntityType>
         <Association Name="FK_Forecast_Geography">
           <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />
@@ -85,7 +86,8 @@
           <Property Name="lng" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nextUpdate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Forecasts" Relationship="Self.FK_Forecast_Geography" FromRole="Geoname" ToRole="Forecast" />
-          <Property Name="adminName2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="adminName2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastUpdate" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_Forecast_Geography">
           <End Role="Geoname" Type="Self.Geoname" Multiplicity="1" />
@@ -131,6 +133,7 @@
           <EntitySetMapping Name="Geonames">
             <EntityTypeMapping TypeName="WP13_mg222cd_WeatherModel.Geoname">
               <MappingFragment StoreEntitySet="Geoname">
+                <ScalarProperty Name="lastUpdate" ColumnName="lastUpdate" />
                 <ScalarProperty Name="adminName2" ColumnName="adminName2" />
                 <ScalarProperty Name="geoId" ColumnName="geoId" />
                 <ScalarProperty Name="geonameId" ColumnName="geonameId" />

@@ -30,6 +30,7 @@ namespace Weather.Domain.Webservices
             var _nextUpdate = xDoc.Element("weatherdata").Element("meta").Element("nextupdate").Value;
             //sätter nextupdate på geoname-objektet
             geoname.nextUpdate = ConvertToDateTime(_nextUpdate);
+            geoname.lastUpdate = ConvertToDateTime(_lastUpdate);
 
             //hämtar 20 senaste prognoserna
             var groupedForcasts = xDoc.Descendants("tabular").Descendants("time")

@@ -16,7 +16,7 @@ namespace Weather.Domain.Webservices
         {
             string rawJson;
 
-            string requestUriString = String.Format("http://api.geonames.org/searchJSON?name={0}&style=full&maxRows=10&username=marikegrinde", geoName);
+            string requestUriString = String.Format("http://api.geonames.org/searchJSON?name={0}&style=full&maxRows=100&username=marikegrinde", geoName);
             var request = (HttpWebRequest)WebRequest.Create(requestUriString);
 
             using (var response = request.GetResponse())
