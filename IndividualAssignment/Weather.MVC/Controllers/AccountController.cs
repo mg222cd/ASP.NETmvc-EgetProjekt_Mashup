@@ -55,7 +55,7 @@ namespace Weather.MVC.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl = "~/")
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -66,7 +66,7 @@ namespace Weather.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = "~/")
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Weather.MVC.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return Redirect(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -392,7 +392,7 @@ namespace Weather.MVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Weather");
         }
 
         //
