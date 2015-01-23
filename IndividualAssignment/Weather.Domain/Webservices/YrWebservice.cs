@@ -24,12 +24,15 @@ namespace Weather.Domain.Webservices
             }
 
             //läsning
+            //data att använda vid läsning
             XDocument xDoc = XDocument.Load(requestUriString);
             var _lastUpdate = xDoc.Element("weatherdata").Element("meta").Element("lastupdate").Value;
             var _nextUpdate = xDoc.Element("weatherdata").Element("meta").Element("nextupdate").Value;
+            //sätter nextupdate på geoname-objektet
             geoname.nextUpdate = ConvertToDateTime(_nextUpdate);
 
-            var groupedForcasts = xDoc.Descendants("time")
+            //hämtar 20 senaste prognoserna
+            var groupedForcasts = xDoc.Descendants("tabular").Descendants("time")
                 .Take(20)
                 .ToList();
             var forecast = new List<Forecast>();
