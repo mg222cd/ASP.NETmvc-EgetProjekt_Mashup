@@ -12,44 +12,52 @@ namespace Weather.Domain.Webservices
     {
         public IEnumerable<Forecast> GetForecast(Geoname geoname)
         {
-            //Olika URL:strängar mot YR:s API beroende på om landet är Norge eller resten av världen.
-            string requestUriString;
-            if (geoname.countryName == "Norway")
+            try
             {
-                requestUriString = String.Format("http://www.yr.no/sted/Norge/{0}/{1}/{2}/forecast.xml", geoname.adminName1, geoname.adminName2, geoname.name);
+                //Olika URL:strängar mot YR:s API beroende på om landet är Norge eller resten av världen.
+                string requestUriString;
+                if (geoname.countryName == "Norway")
+                {
+                    requestUriString = String.Format("http://www.yr.no/sted/Norge/{0}/{1}/{2}/forecast.xml", geoname.adminName1, geoname.adminName2, geoname.name);
+                }
+                else
+                {
+                    requestUriString = String.Format("http://www.yr.no/sted/{0}/{1}/{2}/forecast.xml", geoname.countryName, geoname.adminName1, geoname.name);
+                }
+
+                //läsning
+                //data att använda vid läsning
+                XDocument xDoc = XDocument.Load(requestUriString);
+                var _lastUpdate = xDoc.Element("weatherdata").Element("meta").Element("lastupdate").Value;
+                var _nextUpdate = xDoc.Element("weatherdata").Element("meta").Element("nextupdate").Value;
+                //sätter nextupdate på geoname-objektet
+                geoname.nextUpdate = ConvertToDateTime(_nextUpdate);
+                geoname.lastUpdate = ConvertToDateTime(_lastUpdate);
+
+                //hämtar 20 senaste prognoserna
+                var groupedForcasts = xDoc.Descendants("tabular").Descendants("time")
+                    .Take(20)
+                    .ToList();
+                var forecast = new List<Forecast>();
+
+                foreach (var item in groupedForcasts)
+                {
+                    DateTime lastUpdate = ConvertToDateTime(_lastUpdate);
+                    DateTime nextUpdate = ConvertToDateTime(_nextUpdate);
+                    DateTime timefrom = ConvertToDateTime((string)item.Attribute("from"));
+                    DateTime timeto = ConvertToDateTime((string)item.Attribute("to"));
+                    int timeperiod = (int)item.Attribute("period");
+                    int temperature = (int)item.Element("temperature").Attribute("value");
+                    string symbolId = (string)item.Element("symbol").Attribute("var");
+                    forecast.Add(new Forecast(lastUpdate, nextUpdate, timefrom, timeto, timeperiod, temperature, symbolId, geoname));
+                }
+                return forecast;
             }
-            else
+            catch (Exception e)
             {
-                requestUriString = String.Format("http://www.yr.no/sted/{0}/{1}/{2}/forecast.xml", geoname.countryName, geoname.adminName1, geoname.name);
+                return null;
             }
-
-            //läsning
-            //data att använda vid läsning
-            XDocument xDoc = XDocument.Load(requestUriString);
-            var _lastUpdate = xDoc.Element("weatherdata").Element("meta").Element("lastupdate").Value;
-            var _nextUpdate = xDoc.Element("weatherdata").Element("meta").Element("nextupdate").Value;
-            //sätter nextupdate på geoname-objektet
-            geoname.nextUpdate = ConvertToDateTime(_nextUpdate);
-            geoname.lastUpdate = ConvertToDateTime(_lastUpdate);
-
-            //hämtar 20 senaste prognoserna
-            var groupedForcasts = xDoc.Descendants("tabular").Descendants("time")
-                .Take(20)
-                .ToList();
-            var forecast = new List<Forecast>();
-
-            foreach (var item in groupedForcasts)
-            {
-                DateTime lastUpdate = ConvertToDateTime(_lastUpdate);
-                DateTime nextUpdate = ConvertToDateTime(_nextUpdate);
-                DateTime timefrom = ConvertToDateTime((string)item.Attribute("from"));
-                DateTime timeto = ConvertToDateTime((string)item.Attribute("to"));
-                int timeperiod = (int)item.Attribute("period");
-                int temperature = (int)item.Element("temperature").Attribute("value");
-                string symbolId = (string)item.Element("symbol").Attribute("var");
-                forecast.Add(new Forecast(lastUpdate, nextUpdate, timefrom, timeto, timeperiod, temperature, symbolId, geoname));
-            }
-            return forecast;
+            
         }
 
         private DateTime ConvertToDateTime(string stringToConvert)
