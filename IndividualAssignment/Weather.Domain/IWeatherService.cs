@@ -8,6 +8,7 @@ namespace Weather.Domain
 {
     public interface IWeatherService : IDisposable
     {
+        IEnumerable<Geoname> GetGeonames(string input);
         Geoname AddGeonameToDatabase(Geoname geo);
         Geoname RefreshForecasts(Geoname geoname);
     }

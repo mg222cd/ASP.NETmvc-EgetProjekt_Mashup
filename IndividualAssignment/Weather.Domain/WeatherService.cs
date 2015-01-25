@@ -27,6 +27,21 @@ namespace Weather.Domain
             _yrWebservice = yrWebservice;
         }
 
+        public override IEnumerable<Geoname> GetGeonames(string input)
+        {
+            IEnumerable<Geoname> cities;
+            //Om Geonames-Webservice är nerkopplad sker sökning mot databasen...
+            if (_geonamesWebservice.TestGeonamesResponse() == false)
+            {
+                cities = _repository.FindGeonameByName(input);
+            }
+            //...annars mot GeonamesWebservice
+            else
+            {
+                cities = _geonamesWebservice.GetGeonames(input);
+            }
+            return cities;
+        }
 
         public override Geoname AddGeonameToDatabase(Geoname geo)
         {

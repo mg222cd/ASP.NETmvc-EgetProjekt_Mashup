@@ -12,7 +12,7 @@ namespace Weather.Domain.Repositories
         IEnumerable<Geoname> FindAllGeonames();
         Geoname FindGeonameById(int id);
         Geoname FindGeonameByGeonameId(string geonameid);
-        Geoname FindGeonameByName(string name);
+        IEnumerable<Geoname> FindGeonameByName(string name);
         void AddGeoname(Geoname geoname);
         void UpdateGeoname(Geoname geoname);
         void RemoveGeoname(int id);

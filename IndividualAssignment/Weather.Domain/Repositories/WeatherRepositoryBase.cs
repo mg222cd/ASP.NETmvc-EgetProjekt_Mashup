@@ -26,9 +26,13 @@ namespace Weather.Domain.Repositories
             return QueryGeonames().SingleOrDefault(g => g.geonameId == geonameid);
         }
 
-        public Geoname FindGeonameByName(string name)
+        public IEnumerable<Geoname> FindGeonameByName(string name)
         {
-            return QueryGeonames().SingleOrDefault(g => g.name == name);
+            var geonames =
+                (from g in QueryGeonames()
+                 where g.name.Contains(name)
+                 select g).OrderBy(x => x.adminName2);
+            return geonames.ToList();
         }
 
         public abstract void AddGeoname(Geoname geoname);

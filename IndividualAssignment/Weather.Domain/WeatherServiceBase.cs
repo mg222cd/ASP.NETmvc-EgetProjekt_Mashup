@@ -8,6 +8,7 @@ namespace Weather.Domain
 {
     public abstract class WeatherServiceBase : IWeatherService
     {
+        public abstract IEnumerable<Geoname> GetGeonames(string input);
         public abstract Geoname AddGeonameToDatabase(Geoname geo);
         public abstract Geoname RefreshForecasts(Geoname geoname);
 
