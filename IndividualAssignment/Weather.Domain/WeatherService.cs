@@ -64,7 +64,8 @@ namespace Weather.Domain
         {
             //Nya prognoser ska hämtas om det inte finns några prognoser för valit id, i databasen,
             //eller om giltighetstiden för prognoserna gått ut.
-            if (geoname.Forecasts == null || !geoname.Forecasts.Any() || geoname.nextUpdate < DateTime.Now)
+            //detta görs enbart om YrWebservice fungerar
+            if (geoname.Forecasts == null || !geoname.Forecasts.Any() || geoname.nextUpdate < DateTime.Now && _yrWebservice.TestYrWebserviceResponse() == true)
             {
                 //radera gamla prognoser
                 foreach (var forecast in geoname.Forecasts.ToList())

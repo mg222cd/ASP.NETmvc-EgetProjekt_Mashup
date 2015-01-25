@@ -69,7 +69,7 @@ namespace Weather.Domain.Webservices
                     }
                 }
 
-                return false;
+                return true;
             }
             catch (Exception e)
             {

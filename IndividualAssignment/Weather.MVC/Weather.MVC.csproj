@@ -230,6 +230,7 @@
     <Content Include="Views\Weather\Index.cshtml" />
     <Content Include="Views\Weather\Forecast.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Geoname.cshtml" />
+    <Content Include="Views\Shared\ForecastError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

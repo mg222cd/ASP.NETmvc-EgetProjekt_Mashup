@@ -60,6 +60,22 @@ namespace Weather.Domain.Webservices
             
         }
 
+        public bool TestYrWebserviceResponse()
+        {
+            try
+            {
+                string requestUriStringTest = "http://www.yr.no/sted/Sverige/Dalarna/Orsa/forecast.xml";
+                XDocument xDoc = XDocument.Load(requestUriStringTest);
+                
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         private DateTime ConvertToDateTime(string stringToConvert)
         {
             string[] splittedString = stringToConvert.Split('T');

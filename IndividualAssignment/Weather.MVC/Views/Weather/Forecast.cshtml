@@ -14,7 +14,7 @@
             @String.Format("5-dygnsprognos för {0}, {1}, {2}", @Model.Geoname.name, @Model.Geoname.adminName1, @Model.Geoname.countryName)
         </h3>
         <p>
-            @String.Format("All väderdata samt vädersymbolerna på sidan är hämtade från yr.no.")
+            @String.Format("Prognosen uppdaterades senast: {0}", @Model.Geoname.lastUpdate)
         </p>
         <table>
             @foreach (var forecast in @Model.Geoname.Forecasts)
@@ -63,6 +63,9 @@
 <div class="row">
     <div class="col-xs12 col-sm-12">
         <div class="input_form">
+            <p>
+                @String.Format("All väderdata samt vädersymboler på sidan är hämtade från yr.no.")
+            </p>
             @Html.ActionLink("Tillbaka till Sök", "Index")
         </div>
     </div>

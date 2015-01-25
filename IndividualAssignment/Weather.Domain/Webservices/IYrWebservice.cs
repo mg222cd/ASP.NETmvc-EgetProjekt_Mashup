@@ -9,5 +9,6 @@ namespace Weather.Domain.Webservices
     public interface IYrWebservice
     {
         IEnumerable<Forecast> GetForecast(Geoname geoname);
+        bool TestYrWebserviceResponse();
     }
 }

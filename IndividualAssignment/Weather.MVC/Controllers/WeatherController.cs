@@ -40,8 +40,6 @@ namespace Weather.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //var webservice = new GeonamesWebservice();
-                    //model.Geonames = webservice.GetGeonames(model.Geoname);
                     model.Geonames = _service.GetGeonames(model.Geoname);
                 }
             }
@@ -72,8 +70,8 @@ namespace Weather.MVC.Controllers
                 }
                 ModelState.AddModelError(String.Empty, ex.Message);
             }
-
-            return View("Error");
+            YrWebservice _yrWebservice = new YrWebservice();
+            return View("ForecastError", _yrWebservice);
         }
     }
 }
