@@ -8,6 +8,7 @@ namespace Weather.Domain.Webservices
 {
     public interface IGeonamesWebservice
     {
+        bool TestGeonamesResponse();
         IEnumerable<Geoname> GetGeonames(string geoName);
     }
 }

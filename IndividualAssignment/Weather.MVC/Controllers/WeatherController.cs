@@ -57,7 +57,7 @@ namespace Weather.MVC.Controllers
         {
             try
             {
-                geoname = _service.GetGeoname(geoname);
+                geoname = _service.AddGeonameToDatabase(geoname);
                 geoname = _service.RefreshForecasts(geoname);
                 //geonames-modellen skickas med i konstruktorn till vymodellen
                 var viewModel = new WeatherForecastViewModel(geoname);

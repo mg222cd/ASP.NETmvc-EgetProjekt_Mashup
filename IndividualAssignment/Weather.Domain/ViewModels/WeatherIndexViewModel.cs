@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weather.Domain.Webservices;
 
 namespace Weather.Domain.ViewModels
 {
@@ -29,5 +30,19 @@ namespace Weather.Domain.ViewModels
         }
 
         public IEnumerable<Geoname> Geonames { get; set; }
+
+        public bool TestGeonames()
+        {
+            GeonamesWebservice _geonamesWebservice = new GeonamesWebservice();
+
+            if (_geonamesWebservice.TestGeonamesResponse() == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

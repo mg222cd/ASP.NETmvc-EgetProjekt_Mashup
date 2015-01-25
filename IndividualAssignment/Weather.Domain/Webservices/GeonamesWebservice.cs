@@ -51,5 +51,30 @@ namespace Weather.Domain.Webservices
             }
             
         }
+
+        public bool TestGeonamesResponse()
+        {
+            try
+            {
+                string rawJsonTest;
+
+                string requestUriString = "http://api.geonames.org/searchJSON?name=Stockholm&style=full&maxRows=100&username=marikegrinde";
+                var request = (HttpWebRequest)WebRequest.Create(requestUriString);
+
+                using (var response = request.GetResponse())
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        rawJsonTest = reader.ReadToEnd();
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Weather.Domain
 {
     public abstract class WeatherServiceBase : IWeatherService
     {
-        public abstract Geoname GetGeoname(Geoname geo);
+        public abstract Geoname AddGeonameToDatabase(Geoname geo);
         public abstract Geoname RefreshForecasts(Geoname geoname);
 
         //Disposable

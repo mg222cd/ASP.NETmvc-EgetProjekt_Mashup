@@ -27,7 +27,8 @@ namespace Weather.Domain
             _yrWebservice = yrWebservice;
         }
 
-        public override Geoname GetGeoname(Geoname geo)
+
+        public override Geoname AddGeonameToDatabase(Geoname geo)
         {
             //Försök hämta Geonamet från databasen
             var geoname = _repository.FindGeonameByGeonameId(geo.geonameId);
