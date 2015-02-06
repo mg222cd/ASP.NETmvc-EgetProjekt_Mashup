@@ -29,6 +29,7 @@ namespace Weather.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/webstorage").Include(
                         "~/Scripts/webstorage.js"));
+
         }
     }
 }
