@@ -10,10 +10,10 @@
 </div>
 <div class="row">
     <div class="col-xs12 col-sm-12" id="forecast">
-        <h3 id="forecastHeader">
+        <h3>
             @String.Format("5-dygnsprognos för {0}, {1}, {2}", @Model.Geoname.name, @Model.Geoname.adminName1, @Model.Geoname.countryName)
         </h3>
-        <p id="forecastUpdated">
+        <p>
             @String.Format("Prognosen uppdaterades senast: {0}", @Model.Geoname.lastUpdate)
         </p>
         <table>
@@ -27,15 +27,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-md-4 period">
+                        <td class="col-md-4">
                             @Html.DisplayFor(modelItem => forecast.timeFrom.TimeOfDay)
                             -
                             @Html.DisplayFor(modelItem => forecast.timeTo.TimeOfDay)
                         </td>
-                        <td class="col-md-2 symbol">
+                        <td class="col-md-2">
                             <img src="http://symbol.yr.no/grafikk/sym/b38/@(forecast.symbol).png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
                         </td>
-                        <td class="col-md-2 temp">
+                        <td class="col-md-2">
                             @Html.DisplayFor(modelItem => forecast.temp) °C
                         </td>
                     </tr>
@@ -43,15 +43,15 @@
                 else
                 {
                     <tr>
-                        <td class="col-md-4 period">
+                        <td class="col-md-4">
                             @Html.DisplayFor(modelItem => forecast.timeFrom.TimeOfDay)
                             -
                             @Html.DisplayFor(modelItem => forecast.timeTo.TimeOfDay)
                         </td>
-                        <td class="col-md-2 symbol">
+                        <td class="col-md-2">
                             <img src="http://symbol.yr.no/grafikk/sym/b38/@(forecast.symbol).png" alt="vädersymbol från yr.no" title="vädersymbol från yr.no">
                         </td>
-                        <td class="col-md-2 day">
+                        <td class="col-md-2">
                             @Html.DisplayFor(modelItem => forecast.temp) °C
                         </td>
                     </tr>
